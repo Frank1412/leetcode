@@ -1,6 +1,5 @@
 package com.bonc.leetcode_solution;
 
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -10,13 +9,19 @@ import java.util.LinkedList;
  */
 public class Q101 {
 
-    static class TreeNode{
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode (){}
-        TreeNode (int val){this.val = val;}
-        TreeNode (int val, TreeNode left, TreeNode right){
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
             this.right = right;
@@ -24,21 +29,21 @@ public class Q101 {
     }
 
     public boolean isSymmetric(TreeNode root) {
-        if (root == null){
+        if (root == null) {
             return true;
         }
         Deque<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(root);
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             TreeNode l = queue.poll();
             TreeNode r = queue.poll();
-            if (l==null && r==null) continue;
-            if (l!=null && r!=null) {
-                if (l.val != r.val){
+            if (l == null && r == null) continue;
+            if (l != null && r != null) {
+                if (l.val != r.val) {
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
 
