@@ -21,7 +21,21 @@ package com.bonc.leetcode_solution;
  * }
  */
 public class Q98 {
+
+    TreeNode pre;
     public boolean isValidBST(TreeNode root) {
-        return true;
+        if (root==null){
+            return true;
+        }
+
+        if (!isValidBST(root.left)){
+            return false;
+        }
+        if (pre==null) pre = root;
+        else if (pre.val >= root.val){
+            return false;
+        }
+        pre = root;
+        return isValidBST(root.right);
     }
 }
