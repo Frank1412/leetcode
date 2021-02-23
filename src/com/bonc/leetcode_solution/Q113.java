@@ -1,7 +1,6 @@
 package com.bonc.leetcode_solution;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: Frank
@@ -13,8 +12,32 @@ import java.util.List;
  *
  */
 public class Q113 {
-    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
 
-        return new LinkedList<>();
+    List<List<Integer>> res = new ArrayList<>();
+    Deque<Integer> path = new LinkedList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        if (root==null) return res;
+        dfs(root, targetSum);
+        return res;
+    }
+
+    public void dfs(TreeNode root, int targetSum){
+        if (root.left==null && root.right==null){
+            if (targetSum-root.val==0){
+                path.offerLast(root.val);
+                res.add(new LinkedList<>(path));
+                path.pollLast();
+            }
+            return;
+        }
+        int sum = targetSum - root.val;
+        path.addLast(root.val);
+        if (root.left!=null){
+            dfs(root.left, sum);
+        }
+        if (root.right!=null){
+            dfs(root.right, sum);
+        }
+        path.pollLast();
     }
 }
