@@ -2,6 +2,7 @@ package com.bonc.leetcode_solution;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  * @author Shouzhi Fang(frank)
@@ -57,6 +58,11 @@ public class Q104 {
     }
 
     public static void main(String[] args) {
-
+        PriorityQueue<Integer> pri = new PriorityQueue<>();
+        pri.offer(1);
+        pri.offer(3);
+        pri.offer(3);
+        pri.offer(2);
+        System.out.println(pri);
     }
 }
