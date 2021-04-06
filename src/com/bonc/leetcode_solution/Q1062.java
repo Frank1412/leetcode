@@ -13,7 +13,7 @@ public class Q1062 {
     public int longestRepeatingSubstring(String s){
         int i=0,j=s.length()-1;
         while(i<j){
-            int mid = i + (j-i)/2;
+            int mid = i + (j-i+1)/2;
             if (isValid(mid, s)){
                 i = mid;
             }else{
