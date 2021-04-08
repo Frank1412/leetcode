@@ -8,7 +8,7 @@ public class Q4 {
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
-        // 时间复杂度O(m+n) 很复杂，为实现
+        // 时间复杂度O(m+n) 很复杂，未实现
 //        int len = nums1.length + nums2.length;
 //        if (nums1.length==0){
 //            if (nums2.length%2==0) return (nums2[len/2-1] + nums2[len/2])/2.0;
