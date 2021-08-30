@@ -10,35 +10,35 @@ import java.util.List;
  */
 public class Q6 {
     public String convert(String s, int numRows) {
-        if(2>numRows){
+        if (2 > numRows) {
             return s;
         }
         List<StringBuilder> str_list = new ArrayList<>();
-        for(int j=0;j<numRows;j++) str_list.add(new StringBuilder());
-        int i=0;
-        boolean flag=true;
+        for (int j = 0; j < numRows; j++) str_list.add(new StringBuilder());
+        int i = 0;
+        boolean flag = true;
 
-        for(char c: s.toCharArray()){
-            if(flag&&i<numRows){
+        for (char c : s.toCharArray()) {
+            if (flag && i < numRows) {
                 str_list.get(i).append(c);
                 i++;
-            }else if(flag&&i==numRows){
-                i-=2;
+            } else if (flag && i == numRows) {
+                i -= 2;
                 str_list.get(i).append(c);
                 i--;
-                flag=!flag;
-            }else if(!flag&&i>-1){
+                flag = !flag;
+            } else if (!flag && i > -1) {
                 str_list.get(i).append(c);
                 i--;
-            }else{
-                i+=2;
+            } else {
+                i += 2;
                 str_list.get(i).append(c);
                 i++;
                 flag = !flag;
             }
         }
         StringBuilder res = new StringBuilder();
-        for(StringBuilder str: str_list){
+        for (StringBuilder str : str_list) {
             res.append(str);
         }
         return res.toString();

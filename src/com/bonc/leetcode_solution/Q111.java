@@ -22,13 +22,17 @@ public class Q111 {
     }
 
     public int minDepth(TreeNode root) {
+
+        //DFS
+//        return helper(root);
+
+        // BFS
         int depth = 0;
         if (root==null){
             return depth;
         }
         Deque<TreeNode> queue=new LinkedList<>();
         queue.offer(root);
-//        depth++;
         while (!queue.isEmpty()){
             int size = queue.size();
             for (int i=0;i<size;i++){
@@ -44,5 +48,20 @@ public class Q111 {
             depth++;
         }
         return depth;
+    }
+
+    private int helper(TreeNode root){
+        if(root==null) return 0;
+
+        if(root.left==null&&root.right==null) return 1;
+
+        int minlen = Integer.MAX_VALUE;
+        if(root.right!=null){
+            minlen =  Math.min(helper(root.right)+1, minlen);
+        }
+        if(root.left!=null){
+            minlen = Math.min(helper(root.left)+1, minlen);
+        }
+        return minlen;
     }
 }

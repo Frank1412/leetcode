@@ -1,62 +1,43 @@
 package com.bonc.leetcode_solution;
 
+/**
+ * @author: Shouzhi Fang(frank)
+ * @create: 2021-07-04 21:22
+ * @description:
+ * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+ *
+ * 示例 1：
+ * 输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+ * 输出：6
+ * 解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。
+ *
+ * 示例 2：
+ * 输入：height = [4,2,0,3,2,5]
+ * 输出：9
+ *
+ */
 public class Q42 {
 
 	public static int trap(int[] height) {
-		
-		// ������
-//		int trapArea = 0;
-//		for (int i = 1; i < height.length-1; i++) {
-//			int left = i-1, right = i+1;
-//			int max_left = 0, max_right = 0;
-//			while(left>=0) {
-//				max_left = Math.max(max_left, height[left]);
-//				left--;
-//			}
-//			while(right<height.length) {
-//				max_right = Math.max(max_right, height[right]);
-//				right++;
-//			}
-//			int min = Math.min(max_left, max_right);
-//			int add = height[i]<min?(min-height[i]):0;
-//			trapArea += add;
-//		}
-//		return trapArea;
-		
-		// ��̬�滮
-//		int trapArea = 0;
-//		int []left_max = new int[height.length];
-//		int []right_max = new int[height.length];
-//		int max_left = 0, max_right=0;
-//		for (int i = 1; i < height.length; i++) {
-//			left_max[i] = Math.max(left_max[i-1], height[i-1]);
-//		}
-//		for (int i = height.length-2; i > -1; i--) {
-//			right_max[i] = Math.max(right_max[i+1], height[i+1]);
-//		}
-//		for (int i = 1; i < height.length-1; i++) {
-//			int min = Math.min(left_max[i], right_max[i]);
-//			int add = height[i]<min?(min-height[i]):0;
-//			trapArea += add;
-//		}
-//		return trapArea;
-		
-		// ˫ָ��
-		int trapArea = 0;
-		int left = 1, right = height.length-2, max_left = 0, max_right = 0;
-		while (left<=right) {
-			max_left = Math.max(max_left, height[left-1]);
-			max_right = Math.max(max_right, height[right+1]);
-			if (max_left<max_right) {
-				trapArea += max_left>height[left]?max_left-height[left]:0;
-				left++;
-			}else {
-				trapArea += max_right>height[right]?max_right-height[right]:0;
-				right--;
+
+		// 动态规划
+		if (height.length==0) return 0;
+		int area = 0;
+		int[] leftMax = new int[height.length];
+		int[] rightMax = new int[height.length];
+		leftMax[0] = height[0];
+		rightMax[height.length-1] = height[height.length-1];
+		for (int i=1;i<height.length-1;i++){
+			leftMax[i] = Math.max(leftMax[i-1], height[i]);
+			rightMax[height.length-1-i] = Math.max(rightMax[height.length-i], height[height.length-1-i]);
+		}
+		for (int i=0;i<leftMax.length;i++){
+			if (Math.min(leftMax[i], rightMax[i])-height[i]>0){
+				area += Math.min(leftMax[i], rightMax[i])-height[i];
 			}
 		}
-		
-		return trapArea;
+
+		return area;
     }
 	
 	public static void main(String[] args) {

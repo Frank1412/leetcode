@@ -29,6 +29,8 @@ public class Q102 {
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
+
+        // BFS breadth-first-search
         Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> res = new ArrayList<>();
         if (root==null){
@@ -51,5 +53,6 @@ public class Q102 {
             res.add(level);
         }
         return res;
+
     }
 }

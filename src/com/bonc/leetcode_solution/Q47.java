@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Q47 {
 
-    boolean[] used;
+    private boolean[] used;
     public List<List<Integer>> permuteUnique(int[] nums) {
         used = new boolean[nums.length];
         Arrays.sort(nums);

@@ -29,30 +29,47 @@ public class Q101 {
     }
 
     public boolean isSymmetric(TreeNode root) {
+
+        // 深度优先 递归
         if (root == null) {
             return true;
         }
-        Deque<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            TreeNode l = queue.poll();
-            TreeNode r = queue.poll();
-            if (l == null && r == null) continue;
-            if (l != null && r != null) {
-                if (l.val != r.val) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+        return dfs(root.left, root.right);
 
-            queue.offer(l.left);
-            queue.offer(r.right);
-            queue.offer(l.right);
-            queue.offer(r.left);
+        // 广度优先
+//        if (root == null) {
+//            return true;
+//        }
+//        Deque<TreeNode> queue = new LinkedList<>();
+//        queue.offer(root);
+//        queue.offer(root);
+//        while (!queue.isEmpty()) {
+//            TreeNode l = queue.poll();
+//            TreeNode r = queue.poll();
+//            if (l == null && r == null) continue;
+//
+//            if (l == null || r == null) {
+//                return false;
+//            }
+//            if (l.val != r.val) {
+//                return false;
+//            }
+//
+//            queue.offer(l.left);
+//            queue.offer(r.right);
+//            queue.offer(l.right);
+//            queue.offer(r.left);
+//        }
+//        return true;
+    }
 
+    private boolean dfs(TreeNode left, TreeNode right){
+        if (left == null && right == null) {
+            return true;
         }
-        return true;
+        if (left == null || right == null) {
+            return false;
+        }
+        return left.val==right.val&&dfs(left.left, right.right)&&dfs(left.right, right.left);
     }
 }

@@ -29,16 +29,14 @@ public class Q139 {
         }
         isBreak[end] = false;
         for(int i=0;i<end;i++){
-            Boolean cur = isBreak[i];
-//            System.out.println(i);
-//            System.out.println(s.substring(0,i));
-            if(!dfs(s.substring(0,i), i, wordDict, isBreak)){
+            boolean right = wordDict.contains(s.substring(i, end));
+            if (!right){
                 continue;
-            }else{
-                isBreak[i] = true;
             }
-            if(wordDict.contains(s.substring(i))){
-                return isBreak[i];
+            boolean left = dfs(s, i, wordDict, isBreak);
+            if (left){
+                isBreak[end] = true;
+                break;
             }
         }
 
